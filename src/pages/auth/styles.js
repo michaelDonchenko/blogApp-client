@@ -18,18 +18,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 0),
   },
   paper: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(3),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(3),
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-    height: '35px',
-    width: '35px',
-  },
+
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
@@ -41,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(6, 0),
   },
   link: {
-    textDecoration: 'none',
+    textDecoration: 'underline',
     color: 'black',
     '&:hover': {
       color: theme.palette.primary.light,

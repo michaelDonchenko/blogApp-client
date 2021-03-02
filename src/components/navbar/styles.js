@@ -12,19 +12,25 @@ const useStyles = makeStyles({
   },
   navLink: {
     textDecoration: 'none',
-  },
-  navButton: {
-    color: 'white',
     fontWeight: '500',
-  },
-  mainButton: {
     color: 'white',
-    margin: '5px 0 10px 0',
-    fontSize: '20px',
-    padding: 0,
+    fontSize: '16px',
+    margin: '0 5px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
+
+  logo: {
+    textDecoration: 'none',
+    fontWeight: '500',
+    color: 'white',
+    fontSize: '22px',
+    margin: '0 5px',
+  },
+
   toolBar: {
-    minHeight: '20px',
+    minHeight: '30px',
     width: '100%',
     maxWidth: '1280px',
   },
