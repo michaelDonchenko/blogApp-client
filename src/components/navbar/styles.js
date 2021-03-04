@@ -39,6 +39,18 @@ const useStyles = makeStyles({
     width: '100%',
     maxWidth: '1280px',
   },
+
+  menu: {
+    padding: '5px',
+  },
+
+  item: {
+    margin: '10px',
+  },
+
+  icon: {
+    margin: '0 7px 0 0 ',
+  },
 })
 
 export default useStyles

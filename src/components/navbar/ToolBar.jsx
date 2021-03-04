@@ -3,8 +3,16 @@ import { NavLink } from 'react-router-dom'
 import { pink } from '@material-ui/core/colors'
 import { Toolbar } from '@material-ui/core'
 import useStyles from './styles'
+import UserMenu from '../utils/UserMenu'
 
-const ToolBar = ({ user, token, handleLogout }) => {
+const ToolBar = ({
+  user,
+  token,
+  handleLogout,
+  open,
+  handleClick,
+  handleClose,
+}) => {
   const classes = useStyles()
   return (
     <Toolbar className={classes.toolBar}>
@@ -23,9 +31,15 @@ const ToolBar = ({ user, token, handleLogout }) => {
       <div style={{ flexGrow: 1 }}></div>
 
       {user && token ? (
-        <span className={classes.navLink} onClick={handleLogout}>
-          Log-out
-        </span>
+        <>
+          <UserMenu
+            classes={classes}
+            handleLogout={handleLogout}
+            open={open}
+            handleClick={handleClick}
+            handleClose={handleClose}
+          />
+        </>
       ) : (
         <>
           <NavLink
