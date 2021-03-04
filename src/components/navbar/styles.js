@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     margin: '0 5px',
     '&:hover': {
       cursor: 'pointer',
+      color: '#ec407a',
     },
   },
 
@@ -27,6 +28,10 @@ const useStyles = makeStyles({
     color: 'white',
     fontSize: '22px',
     margin: '0 5px',
+    '&:hover': {
+      cursor: 'pointer',
+      color: '#ec407a',
+    },
   },
 
   toolBar: {

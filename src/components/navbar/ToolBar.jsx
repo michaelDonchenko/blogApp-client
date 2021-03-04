@@ -12,7 +12,7 @@ const ToolBar = ({ user, token, handleLogout }) => {
         exact={true}
         activeStyle={{
           textDecoration: 'underline',
-          color: pink[800],
+          color: pink[500],
           fontWeight: '700',
         }}
         className={classes.navLink}
@@ -24,7 +24,7 @@ const ToolBar = ({ user, token, handleLogout }) => {
 
       {user && token ? (
         <span className={classes.navLink} onClick={handleLogout}>
-          logout
+          Log-out
         </span>
       ) : (
         <>
@@ -33,19 +33,19 @@ const ToolBar = ({ user, token, handleLogout }) => {
             exact={true}
             activeStyle={{
               textDecoration: 'underline',
-              color: pink[800],
+              textDecorationColor: pink[500],
               fontWeight: '700',
             }}
             to='/login'
           >
-            Login
+            Log-in
           </NavLink>
 
           <NavLink
             exact={true}
             activeStyle={{
               textDecoration: 'underline',
-              color: pink[800],
+              textDecorationColor: pink[500],
               fontWeight: '700',
             }}
             className={classes.navLink}
