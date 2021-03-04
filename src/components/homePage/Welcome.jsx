@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/authContext'
 
@@ -7,11 +7,28 @@ const Welcome = () => {
   const { state } = useContext(AuthContext)
   const { user, token } = state
 
+  const [width, setWidth] = useState(window.innerWidth)
+
+  const handleWithChange = () => {
+    setWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWithChange)
+    return () => window.removeEventListener('resize', handleWithChange)
+  }, [])
+
   return (
     <Typography component='div' align='left'>
-      <Typography variant='h5'>
+      <Typography variant={width < 600 ? 'subtitle1' : 'h5'}>
         {user && token ? (
-          `Hello ${user.username}, welcome back`
+          <>
+            <span>Hello</span>
+            <span style={{ fontWeight: '600', margin: '0 7px' }}>
+              {user.username},
+            </span>
+            <span>Welcome back.</span>
+          </>
         ) : (
           <>
             <span>Hello Guest, please</span>

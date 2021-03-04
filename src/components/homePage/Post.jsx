@@ -35,7 +35,8 @@ const Post = ({ post, classes }) => {
               variant='subtitle1'
               style={{ overflowX: 'auto', fontWeight: '600' }}
             >
-              {post.postedBy.username} / {post.postedBy.email}
+              {post.postedBy.username} /
+              <span style={{ color: 'GrayText' }}>{post.postedBy.email}</span>
             </Typography>
           </Link>
 
