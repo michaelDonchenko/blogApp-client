@@ -11,7 +11,7 @@ import { Alert } from '@material-ui/lab'
 
 const RegisterForm = ({ values, handleChange, handleSubmit }) => {
   const classes = styles()
-  const { name, username, email, password, loading, error, success } = values
+  const { username, email, password, loading, error, success } = values
 
   const displayError = () => {
     if (typeof error === 'string') {
@@ -54,19 +54,7 @@ const RegisterForm = ({ values, handleChange, handleSubmit }) => {
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name='name'
-                onChange={handleChange}
-                value={name}
-                variant='standard'
-                fullWidth
-                id='name'
-                label='Name'
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 variant='standard'
                 value={username}

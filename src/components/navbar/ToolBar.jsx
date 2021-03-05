@@ -38,6 +38,7 @@ const ToolBar = ({
             open={open}
             handleClick={handleClick}
             handleClose={handleClose}
+            user={user}
           />
         </>
       ) : (

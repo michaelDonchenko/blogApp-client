@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import PersonIcon from '@material-ui/icons/Person'
 import PostAddIcon from '@material-ui/icons/PostAdd'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import { Link } from 'react-router-dom'
 
 export default function UserMenu({
   classes,
@@ -11,6 +12,7 @@ export default function UserMenu({
   open,
   handleClick,
   handleClose,
+  user,
 }) {
   return (
     <div>
@@ -30,9 +32,12 @@ export default function UserMenu({
         open={Boolean(open)}
         onClose={handleClose}
       >
-        <MenuItem className={classes.item} onClick={handleClose}>
-          <PersonIcon className={classes.icon} /> Profile
-        </MenuItem>
+        <Link className={classes.link} to={`/private-profile/${user._id}`}>
+          <MenuItem className={classes.item} onClick={handleClose}>
+            <PersonIcon className={classes.icon} /> Profile
+          </MenuItem>
+        </Link>
+
         <MenuItem className={classes.item} onClick={handleClose}>
           <PostAddIcon className={classes.icon} /> New Post
         </MenuItem>

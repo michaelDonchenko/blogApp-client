@@ -15,7 +15,6 @@ const Register = ({ history }) => {
 
   const classes = styles()
   const [values, setValues] = useState({
-    name: '',
     username: '',
     password: '',
     email: '',
@@ -24,7 +23,7 @@ const Register = ({ history }) => {
     success: false,
   })
 
-  const { name, username, password, email } = values
+  const { username, password, email } = values
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
@@ -34,7 +33,7 @@ const Register = ({ history }) => {
     e.preventDefault()
     setValues({ ...values, loading: true })
     try {
-      const registerResponse = await register(name, password, email, username)
+      const registerResponse = await register(password, email, username)
 
       if (registerResponse.data.errors) {
         let errors = []
@@ -53,7 +52,6 @@ const Register = ({ history }) => {
           error: false,
           loading: false,
           success: registerResponse.data.message,
-          name: '',
           username: '',
           password: '',
           email: '',

@@ -51,6 +51,11 @@ const useStyles = makeStyles({
   icon: {
     margin: '0 7px 0 0 ',
   },
+
+  link: {
+    textDecoration: 'none',
+    color: 'black',
+  },
 })
 
 export default useStyles

@@ -9,6 +9,8 @@ import useStyles from './styles'
 import { ThemeProvider } from '@material-ui/core'
 import theme from './theme'
 import ScrollToTop from './components/utils/ScrollTop'
+import PrivateRoute from './components/routes/PrivateRoute'
+import UserProfile from './pages/user/UserProfile'
 
 const App = () => {
   const classes = useStyles()
@@ -24,6 +26,11 @@ const App = () => {
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
+            <PrivateRoute
+              exact
+              path={`/private-profile/:id`}
+              component={UserProfile}
+            />
           </main>
         </Switch>
       </ThemeProvider>
