@@ -18,9 +18,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0),
   },
 
-  headingIcon: {
-    fontSize: '34px',
-    marginTop: '5px',
+  image: {
+    display: 'flex',
+    margin: '20px auto',
+    border: '1px solid',
+    [theme.breakpoints.down('xs')]: { maxWidth: '90%', maxHeight: '250px' },
+    [theme.breakpoints.up('sm')]: { maxWidth: '100%', height: '350px' },
+    boxShadow:
+      'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
   },
 
   link: {
@@ -29,6 +34,50 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: theme.palette.primary.light,
     },
+  },
+
+  flexDiv: {
+    marginBottom: '30px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  accordionStyle: {
+    margin: '30px 20px 0 20px',
+    '& .MuiAccordionSummary-root': {
+      minHeight: '30px',
+      height: '30px',
+    },
+  },
+
+  imagesContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+
+  imageInContainer: {
+    height: '80px',
+    margin: '10px',
+    '&:hover': {
+      border: '1px solid',
+      cursor: 'pointer',
+    },
+  },
+
+  inputField: {
+    '& label.Mui-focused': {
+      color: 'black',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'black',
+    },
+    marginBottom: '20px',
+    width: '90%',
+    margin: '15px 0',
+  },
+
+  detailsForm: {
+    padding: '10px',
   },
 }))
 
