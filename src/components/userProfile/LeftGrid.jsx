@@ -37,7 +37,7 @@ const LeftGrid = ({
           <img
             className={classes.image}
             src={images.length > 0 && images[0].url}
-            alt='Error'
+            alt='Cannot show this image'
           />
         )}
 
@@ -48,7 +48,6 @@ const LeftGrid = ({
               display: 'flex',
               padding: '10px 20px',
             }}
-            labelId='images'
             type='file'
             accept='image/*'
             name='imagetoUpload'

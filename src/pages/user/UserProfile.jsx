@@ -50,6 +50,7 @@ const UserProfile = () => {
     setValues({ ...values, loading: true })
     try {
       const { data } = await userProfile(token)
+
       if (data.success) {
         let { user } = data
         setValues({

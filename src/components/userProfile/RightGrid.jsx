@@ -50,7 +50,7 @@ const RightGrid = ({ values, classes, handleChange, handleDetailsUpdate }) => {
 
   return (
     <Typography component='div' className={classes.flexDiv}>
-      <Typography variant='h5' align='center'>
+      <Typography variant='h5' align='center' style={{ marginTop: '20px' }}>
         Update Details
       </Typography>
 

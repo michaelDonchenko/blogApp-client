@@ -1,22 +1,11 @@
 import { Typography } from '@material-ui/core'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/authContext'
 
-const Welcome = () => {
+const Welcome = ({ width }) => {
   const { state } = useContext(AuthContext)
   const { user, token } = state
-
-  const [width, setWidth] = useState(window.innerWidth)
-
-  const handleWithChange = () => {
-    setWidth(window.innerWidth)
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWithChange)
-    return () => window.removeEventListener('resize', handleWithChange)
-  }, [])
 
   return (
     <Typography component='div' align='left'>

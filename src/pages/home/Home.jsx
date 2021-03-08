@@ -21,6 +21,12 @@ const Home = () => {
 
   const { loading, error, posts, pages, page } = values
 
+  const [width, setWidth] = useState(window.innerWidth)
+
+  const handleWithChange = () => {
+    setWidth(window.innerWidth)
+  }
+
   const getAllPosts = async () => {
     setValues({ ...values, loading: true })
     try {
@@ -53,11 +59,16 @@ const Home = () => {
     getAllPosts()
   }, [page])
 
+  useEffect(() => {
+    window.addEventListener('resize', handleWithChange)
+    return () => window.removeEventListener('resize', handleWithChange)
+  }, [])
+
   return (
     <Container maxWidth='lg' className={classes.root}>
       <Typography component='div' className={classes.main}>
         <header>
-          <Welcome />
+          <Welcome width={width} />
           <HomeFilters
             classes={classes}
             keyword={keyword}
@@ -66,7 +77,12 @@ const Home = () => {
         </header>
 
         <main>
-          <PostsContainer posts={posts} error={error} loading={loading} />
+          <PostsContainer
+            posts={posts}
+            error={error}
+            loading={loading}
+            width={width}
+          />
         </main>
 
         <footer>

@@ -5,7 +5,7 @@ import Loader from '../utils/Loader'
 import Post from './Post'
 import styles from '../../pages/home/styles'
 
-const PostsContainer = ({ posts, error, loading }) => {
+const PostsContainer = ({ posts, error, loading, width }) => {
   const displayError = () => {
     if (error) {
       return (
@@ -20,7 +20,7 @@ const PostsContainer = ({ posts, error, loading }) => {
   return (
     <div className={classes.postsContainer}>
       <Typography variant='h6' align='center' style={{ color: 'GrayText' }}>
-        Resent Posts
+        Resent Blogs
       </Typography>
       <hr className={classes.mainHr}></hr>
       {loading && <Loader />}
@@ -29,7 +29,7 @@ const PostsContainer = ({ posts, error, loading }) => {
 
       {!loading && !error && posts.length > 0 ? (
         posts.map((post) => (
-          <Post post={post} key={post._id} classes={classes} />
+          <Post post={post} key={post._id} classes={classes} width={width} />
         ))
       ) : (
         <p>No posts found..</p>

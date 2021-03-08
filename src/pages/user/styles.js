@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
     width: '100%',
     height: 'fit-content',
+    minHeight: '500px',
     border: '2px solid',
     margin: theme.spacing(4, 'auto'),
     padding: '0 0 20px 0',
@@ -78,6 +79,11 @@ const useStyles = makeStyles((theme) => ({
 
   detailsForm: {
     padding: '10px',
+  },
+
+  editorDiv: {
+    width: '90%',
+    margin: '20px auto',
   },
 }))
 

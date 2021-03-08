@@ -10,7 +10,7 @@ const Paginate = ({ page, pages, handlePageChange }) => {
         style={{ display: 'flex', justifyContent: 'center' }}
       >
         <Pagination
-          count={pages && parseInt(pages) > 1 && pages}
+          count={pages && parseInt(pages) > 1 && parseInt(pages)}
           page={page || 1}
           color='primary'
           onChange={handlePageChange}

@@ -2,8 +2,10 @@ import { Typography } from '@material-ui/core'
 import React from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import parse from 'html-react-parser'
+import { pink } from '@material-ui/core/colors'
 
-const Post = ({ post, classes }) => {
+const Post = ({ post, classes, width }) => {
   return (
     <>
       <Typography component='div' className={classes.post}>
@@ -12,17 +14,19 @@ const Post = ({ post, classes }) => {
             style={{
               marginBottom: '7px',
               textAlign: 'center',
-              fontWeight: '500',
+              color: pink[500],
+              background: pink[50],
             }}
-            variant='h5'
+            variant={width > 600 ? 'h4' : 'h5'}
           >
             {post.title}
           </Typography>
         </Link>
 
         <Typography style={{ margin: '20px 0' }} variant='body1'>
-          {post.body.substring(0, 300)}{' '}
-          {post.body.length >= 300 ? '[...]' : null}
+          {post.body.length >= 800
+            ? parse(post.body.substring(0, 800) + '[...]')
+            : parse(post.body.substring(0, 800))}
         </Typography>
 
         <Typography component='div' align='left'>

@@ -5,6 +5,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import PostAddIcon from '@material-ui/icons/PostAdd'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Link } from 'react-router-dom'
+import ChatIcon from '@material-ui/icons/Chat'
 
 export default function UserMenu({
   classes,
@@ -12,7 +13,6 @@ export default function UserMenu({
   open,
   handleClick,
   handleClose,
-  user,
 }) {
   return (
     <div>
@@ -32,15 +32,22 @@ export default function UserMenu({
         open={Boolean(open)}
         onClose={handleClose}
       >
-        <Link className={classes.link} to={`/private-profile/${user._id}`}>
+        <Link className={classes.link} to={`/private-profile`}>
           <MenuItem className={classes.item} onClick={handleClose}>
             <PersonIcon className={classes.icon} /> Profile
           </MenuItem>
         </Link>
 
+        <Link className={classes.link} to={`/new-post`}>
+          <MenuItem className={classes.item} onClick={handleClose}>
+            <PostAddIcon className={classes.icon} /> New Post
+          </MenuItem>
+        </Link>
+
         <MenuItem className={classes.item} onClick={handleClose}>
-          <PostAddIcon className={classes.icon} /> New Post
+          <ChatIcon className={classes.icon} /> My Posts
         </MenuItem>
+
         <MenuItem className={classes.item} onClick={handleLogout}>
           <ExitToAppIcon className={classes.icon} /> Log-out
         </MenuItem>
