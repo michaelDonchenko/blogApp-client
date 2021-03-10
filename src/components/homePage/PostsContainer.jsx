@@ -5,7 +5,15 @@ import Loader from '../utils/Loader'
 import Post from './Post'
 import styles from '../../pages/home/styles'
 
-const PostsContainer = ({ posts, error, loading, width }) => {
+const PostsContainer = ({
+  posts,
+  error,
+  loading,
+  width,
+  values,
+  setValues,
+  getAllPosts,
+}) => {
   const displayError = () => {
     if (error) {
       return (
@@ -29,7 +37,15 @@ const PostsContainer = ({ posts, error, loading, width }) => {
 
       {!loading && !error && posts.length > 0 ? (
         posts.map((post) => (
-          <Post post={post} key={post._id} classes={classes} width={width} />
+          <Post
+            post={post}
+            key={post._id}
+            classes={classes}
+            width={width}
+            values={values}
+            setValues={setValues}
+            getAllPosts={getAllPosts}
+          />
         ))
       ) : (
         <p>No posts found..</p>

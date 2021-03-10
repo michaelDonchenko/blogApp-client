@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: 0,
     display: 'flex',
+    flexDirection: 'column',
   },
 
   main: {
@@ -16,13 +17,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   header: {
-    margin: theme.spacing(2, 0),
+    margin: theme.spacing(5, 0),
+    textAlign: 'center',
+    color: pink[500],
+    background: pink[50],
   },
 
-  postsContainer: {
+  body: {
     padding: theme.spacing(4),
     [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(0),
+      padding: theme.spacing(1),
     },
   },
 
@@ -32,11 +36,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(2, 1),
     },
-  },
-
-  topHr: {
-    borderColor: 'gray',
-    width: '80%',
   },
 
   hr: {
@@ -63,12 +62,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
+    justifyContent: 'left',
   },
 
   image: {
-    height: '60px',
-    borderRadius: '50%',
-    marginRight: '15px',
+    height: '150px',
+    marginLeft: '15px',
   },
 
   button: {

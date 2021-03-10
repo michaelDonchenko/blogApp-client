@@ -17,6 +17,8 @@ const Home = () => {
     posts: '',
     pages: '',
     page: null,
+    deleteError: false,
+    deleteLoading: false,
   })
 
   const { loading, error, posts, pages, page } = values
@@ -82,6 +84,9 @@ const Home = () => {
             error={error}
             loading={loading}
             width={width}
+            values={values}
+            setValues={setValues}
+            getAllPosts={getAllPosts}
           />
         </main>
 
