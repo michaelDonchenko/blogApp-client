@@ -1,8 +1,9 @@
 import { Typography } from '@material-ui/core'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
-const AuthorSection = ({ postedBy, classes, width }) => {
+const AuthorSection = ({ postedBy, classes, width, createdAt }) => {
   const { images, username, email } = postedBy
 
   return (
@@ -28,6 +29,18 @@ const AuthorSection = ({ postedBy, classes, width }) => {
             {username} /<span style={{ color: 'GrayText' }}>{email}</span>
           </Typography>
         </Link>
+
+        <Typography
+          variant='subtitle1'
+          style={{
+            overflowX: 'auto',
+            fontWeight: '600',
+            marginLeft: '15px',
+            color: 'GrayText',
+          }}
+        >
+          {moment(createdAt).format('MMM Do YYYY')}
+        </Typography>
       </div>
     </div>
   )

@@ -29,3 +29,9 @@ export const deletePost = async (token, id) =>
 
 export const getPost = async (id) =>
   await axios.get(`${REACT_APP_SERVER_API}/post/${id}`)
+
+export const getUserPosts = async (userId, page) =>
+  await axios.get(`${REACT_APP_SERVER_API}/user-posts/${userId}?page=${page}`)
+
+export const searchQuery = async (keyword, page) =>
+  axios.post(`${REACT_APP_SERVER_API}/searchQuery?page=${page}`, { keyword })

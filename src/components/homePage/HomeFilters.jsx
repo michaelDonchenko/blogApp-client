@@ -2,13 +2,17 @@ import React from 'react'
 import SearchBar from '../../components/searchBar/SearchBar'
 import { Grid, Typography } from '@material-ui/core'
 
-const HomeFilters = ({ classes, keyword, setKeyword }) => {
+const HomeFilters = ({ keyword, setKeyword, search }) => {
   return (
     <div>
       <Grid container>
         <Grid item xs={12}>
           <Typography component='div' align='center'>
-            <SearchBar keyword={keyword} setKeyword={setKeyword} />
+            <SearchBar
+              keyword={keyword}
+              setKeyword={setKeyword}
+              search={search}
+            />
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6}>

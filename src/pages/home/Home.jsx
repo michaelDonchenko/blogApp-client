@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Container, Typography } from '@material-ui/core'
 import useStyles from './styles'
 import HomeFilters from '../../components/homePage/HomeFilters'
-import { getPosts } from '../../controllers/postControllers'
+import { getPosts, searchQuery } from '../../controllers/postControllers'
 import PostsContainer from '../../components/homePage/PostsContainer'
 import Paginate from '../../components/utils/Paginate'
 import Welcome from '../../components/homePage/Welcome'
@@ -17,11 +17,13 @@ const Home = () => {
     posts: '',
     pages: '',
     page: null,
+    queryPages: '',
+    queryPage: null,
     deleteError: false,
     deleteLoading: false,
   })
 
-  const { loading, error, posts, pages, page } = values
+  const { loading, error, posts, pages, page, queryPage, queryPages } = values
 
   const [width, setWidth] = useState(window.innerWidth)
 
@@ -41,6 +43,35 @@ const Home = () => {
           posts: getPostsResponse.data.posts,
           loading: false,
           pages: getPostsResponse.data.pages,
+          queryPage: null,
+          queryPages: '',
+        })
+      }
+    } catch (error) {
+      setValues({
+        ...values,
+        loading: false,
+        error: error.response.data.message,
+      })
+    }
+  }
+
+  const search = async () => {
+    setValues({ ...values, loading: true })
+    try {
+      if (!keyword) {
+        return await getAllPosts()
+      }
+      const { data } = await searchQuery(keyword, queryPage)
+      if (data.success === true) {
+        setValues({
+          ...values,
+          error: false,
+          posts: data.posts,
+          loading: false,
+          queryPages: data.pages,
+          page: null,
+          pages: '',
         })
       }
     } catch (error) {
@@ -56,10 +87,23 @@ const Home = () => {
     setValues({ ...values, page: value })
   }
 
+  const handleQueryPageChange = (event, value) => {
+    setValues({ ...values, queryPage: value })
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0)
-    getAllPosts()
+    if (!keyword) {
+      return getAllPosts()
+    }
   }, [page])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    if (keyword) {
+      return search()
+    }
+  }, [queryPage])
 
   useEffect(() => {
     window.addEventListener('resize', handleWithChange)
@@ -69,9 +113,13 @@ const Home = () => {
   return (
     <Container maxWidth='lg' className={classes.root}>
       <Typography component='div' className={classes.main}>
+        {JSON.stringify(page)}
+        {JSON.stringify(queryPage)}
+        {JSON.stringify(keyword)}
         <header>
           <Welcome width={width} />
           <HomeFilters
+            search={search}
             classes={classes}
             keyword={keyword}
             setKeyword={setKeyword}
@@ -91,11 +139,21 @@ const Home = () => {
         </main>
 
         <footer>
-          <Paginate
-            page={page}
-            pages={pages}
-            handlePageChange={handlePageChange}
-          />
+          {!keyword && (
+            <Paginate
+              page={page}
+              pages={pages}
+              handlePageChange={handlePageChange}
+            />
+          )}
+
+          {keyword && (
+            <Paginate
+              page={queryPage}
+              pages={queryPages}
+              handlePageChange={handleQueryPageChange}
+            />
+          )}
         </footer>
       </Typography>
     </Container>

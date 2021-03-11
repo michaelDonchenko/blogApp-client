@@ -67,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
 
   image: {
     height: '60px',
-    borderRadius: '50%',
     marginRight: '15px',
   },
 

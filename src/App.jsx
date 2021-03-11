@@ -14,6 +14,7 @@ import UserProfile from './pages/user/UserProfile'
 import NewPost from './pages/user/NewPost'
 import UpdatePost from './pages/user/UpdatePost'
 import SinglePost from './pages/post/SinglePost'
+import PublicProfile from './pages/public profile/PublicProfile'
 
 const App = () => {
   const classes = useStyles()
@@ -30,6 +31,11 @@ const App = () => {
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/post/:id' component={SinglePost} />
+            <Route
+              exact
+              path='/public-user/:username'
+              component={PublicProfile}
+            />
 
             <PrivateRoute
               exact

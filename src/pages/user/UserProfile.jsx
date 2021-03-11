@@ -32,16 +32,10 @@ const UserProfile = () => {
   const {
     username,
     email,
-    images,
     about,
-    error,
-    rightGridError,
-    loading,
-    rightGridLoading,
     imageToUpload,
     imgPublic_id,
     imgMenu,
-    successUpdate,
   } = values
 
   const { REACT_APP_SERVER_API } = process.env

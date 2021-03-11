@@ -1,18 +1,15 @@
-import { Button, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import React, { useContext, useState } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import parse from 'html-react-parser'
 import { pink } from '@material-ui/core/colors'
 import { AuthContext } from '../../context/authContext'
-import CommentIcon from '@material-ui/icons/Comment'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import UpdateIcon from '@material-ui/icons/Update'
-import DeleteIcon from '@material-ui/icons/Delete'
 import DeleteDialog from '../utils/DeleteDialog'
 import { deletePost } from '../../controllers/postControllers'
 import { Alert } from '@material-ui/lab'
 import { getPosts } from '../../controllers/postControllers'
+import ActionButtons from '../utils/ActionButtons'
 
 const Post = ({ post, classes, width, values, setValues }) => {
   const { state } = useContext(AuthContext)
@@ -102,8 +99,6 @@ const Post = ({ post, classes, width, values, setValues }) => {
             : parse(post.body.substring(0, 800))}
         </Typography>
 
-        <hr className={classes.hr}></hr>
-
         <Typography className={classes.flexDiv} component='div' align='left'>
           <div>
             <img
@@ -136,52 +131,12 @@ const Post = ({ post, classes, width, values, setValues }) => {
 
         <hr className={classes.hr}></hr>
 
-        <Typography component='div' className={classes.flexDiv}>
-          <Button
-            startIcon={<FavoriteBorderIcon />}
-            className={classes.button}
-            variant='outlined'
-            color='primary'
-            disabled={!user}
-          >
-            Like
-          </Button>
-          <Button
-            startIcon={<CommentIcon />}
-            className={classes.button}
-            variant='outlined'
-            color='secondary'
-            disabled={!user}
-          >
-            comment
-          </Button>
-
-          {user && user._id === post.postedBy._id ? (
-            <>
-              <Link
-                className={classes.buttonLink}
-                to={`/post-update/${post._id}`}
-              >
-                <Button
-                  startIcon={<UpdateIcon />}
-                  className={classes.updateButton}
-                  variant='outlined'
-                >
-                  update
-                </Button>
-              </Link>
-
-              <Button
-                startIcon={<DeleteIcon />}
-                className={classes.deleteButton}
-                variant='outlined'
-                onClick={handleClickOpen}
-              >
-                delete
-              </Button>
-            </>
-          ) : null}
-        </Typography>
+        <ActionButtons
+          classes={classes}
+          user={user}
+          post={post}
+          handleClickOpen={handleClickOpen}
+        />
       </Typography>
 
       <DeleteDialog

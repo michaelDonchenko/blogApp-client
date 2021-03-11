@@ -14,3 +14,6 @@ export const updateDetails = async (id, token, username, about) =>
       headers: { Authorization: token },
     }
   )
+
+export const publicProfile = async (username) =>
+  axios.get(`${REACT_APP_SERVER_API}/public-profile/${username}`)

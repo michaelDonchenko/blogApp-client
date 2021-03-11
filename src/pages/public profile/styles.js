@@ -34,10 +34,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   link: {
-    textDecoration: 'underline',
-    color: 'black',
+    textDecoration: 'none',
+    color: theme.palette.primary.main,
+    marginBottom: theme.spacing(5),
     '&:hover': {
-      color: theme.palette.primary.light,
+      color: theme.palette.primary.dark,
     },
   },
 
@@ -45,49 +46,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '30px',
     display: 'flex',
     flexDirection: 'column',
+    margin: theme.spacing(2),
   },
 
-  accordionStyle: {
-    margin: '30px 20px 0 20px',
-    '& .MuiAccordionSummary-root': {
-      minHeight: '30px',
-      height: '30px',
-    },
-  },
-
-  imagesContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-
-  imageInContainer: {
-    height: '80px',
+  textField: {
     margin: '10px',
-    '&:hover': {
-      border: '1px solid',
-      cursor: 'pointer',
-    },
-  },
-
-  inputField: {
-    '& label.Mui-focused': {
-      color: 'black',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'black',
-    },
-    marginBottom: '20px',
-    width: '90%',
-    margin: '15px 0',
-  },
-
-  detailsForm: {
-    padding: '10px',
-  },
-
-  editorDiv: {
-    width: '90%',
-    margin: '20px auto',
   },
 }))
 

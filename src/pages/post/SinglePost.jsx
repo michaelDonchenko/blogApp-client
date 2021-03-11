@@ -1,15 +1,20 @@
 import { Container, Typography } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
-import { getPost } from '../../controllers/postControllers'
+import React, { useEffect, useState, useContext } from 'react'
+import { deletePost, getPost } from '../../controllers/postControllers'
 import styles from './styles'
 import Loader from '../../components/utils/Loader'
 import parse from 'html-react-parser'
 import { Alert } from '@material-ui/lab'
 import AuthorSection from './AuthorSection'
+import ActionButtons from '../../components/utils/ActionButtons'
+import { AuthContext } from '../../context/authContext'
+import DeleteSinglePost from './DeleteSinglePost'
 
-const SinglePost = ({ match }) => {
+const SinglePost = ({ match, history }) => {
   const classes = styles()
   const id = match.params.id
+  const { state } = useContext(AuthContext)
+  const { user, token } = state
 
   const [values, setValues] = useState({
     title: '',
@@ -18,13 +23,22 @@ const SinglePost = ({ match }) => {
     error: false,
     loading: true,
     success: false,
+    deleteLoading: false,
+    deleteError: false,
+    post: '',
   })
 
-  const { title, body, error, loading, postedBy } = values
+  const { title, body, error, loading, postedBy, post, deleteError } = values
   const [width, setWidth] = useState(window.innerWidth)
 
   const handleWithChange = () => {
     setWidth(window.innerWidth)
+  }
+
+  const [postId, setPostId] = useState(false)
+
+  const handleClickOpen = () => {
+    setPostId(post._id)
   }
 
   const fetchPost = async () => {
@@ -39,6 +53,7 @@ const SinglePost = ({ match }) => {
           error: false,
           title: data.post.title,
           body: data.post.body,
+          post: data.post,
           postedBy: data.post.postedBy,
         })
       }
@@ -63,6 +78,52 @@ const SinglePost = ({ match }) => {
           {error}
         </Alert>
       )
+    }
+  }
+
+  const displayDeleteError = () => {
+    if (deleteError) {
+      return (
+        <Alert
+          style={{ margin: '15px', width: '100%' }}
+          variant='outlined'
+          severity='error'
+        >
+          {deleteError}
+        </Alert>
+      )
+    }
+  }
+
+  const handleClose = () => {
+    setPostId(false)
+    setValues({ ...values, deleteError: false })
+  }
+
+  const handleDelete = async () => {
+    setValues({ ...values, deleteLoading: true })
+    try {
+      const res = await deletePost(token, post._id)
+
+      if (res.data.success) {
+        history.push('/')
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        return setValues({
+          ...values,
+          deleteSuccess: false,
+          deleteError: 'You are Unauthorized',
+          deleteLoading: false,
+        })
+      }
+
+      setValues({
+        ...values,
+        deleteSuccess: false,
+        deleteError: error.response.data.message,
+        deleteLoading: false,
+      })
     }
   }
 
@@ -98,12 +159,30 @@ const SinglePost = ({ match }) => {
 
             <AuthorSection
               postedBy={postedBy}
+              createdAt={post.createdAt}
               classes={classes}
               width={width}
             />
 
             <hr className={classes.hr}></hr>
+
+            <ActionButtons
+              classes={classes}
+              user={user}
+              post={post}
+              postId={postId}
+              handleClickOpen={handleClickOpen}
+            />
           </Typography>
+
+          <DeleteSinglePost
+            displayDeleteError={displayDeleteError}
+            values={values}
+            post={post}
+            postId={postId}
+            handleClose={handleClose}
+            handleDelete={handleDelete}
+          />
         </>
       )}
     </Container>
