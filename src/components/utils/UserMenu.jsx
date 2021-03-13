@@ -13,6 +13,7 @@ export default function UserMenu({
   open,
   handleClick,
   handleClose,
+  user,
 }) {
   return (
     <div>
@@ -44,9 +45,11 @@ export default function UserMenu({
           </MenuItem>
         </Link>
 
-        <MenuItem className={classes.item} onClick={handleClose}>
-          <ChatIcon className={classes.icon} /> My Posts
-        </MenuItem>
+        <Link className={classes.link} to={`/my-posts/${user.username}`}>
+          <MenuItem className={classes.item} onClick={handleClose}>
+            <ChatIcon className={classes.icon} /> My Posts
+          </MenuItem>
+        </Link>
 
         <MenuItem className={classes.item} onClick={handleLogout}>
           <ExitToAppIcon className={classes.icon} /> Log-out

@@ -15,6 +15,7 @@ import NewPost from './pages/user/NewPost'
 import UpdatePost from './pages/user/UpdatePost'
 import SinglePost from './pages/post/SinglePost'
 import PublicProfile from './pages/public profile/PublicProfile'
+import UserPosts from './pages/user/UserPosts'
 
 const App = () => {
   const classes = useStyles()
@@ -47,6 +48,11 @@ const App = () => {
               exact
               path={`/post-update/:id`}
               component={UpdatePost}
+            />
+            <PrivateRoute
+              exact
+              path={`/my-posts/:username`}
+              component={UserPosts}
             />
           </main>
         </Switch>

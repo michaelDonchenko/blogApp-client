@@ -89,6 +89,12 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
     margin: '20px auto',
   },
+  table: {
+    margin: theme.spacing(2, 'auto'),
+    padding: theme.spacing(2),
+    overflowX: 'auto',
+    maxWidth: '95%',
+  },
 }))
 
 export default useStyles

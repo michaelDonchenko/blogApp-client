@@ -113,9 +113,6 @@ const Home = () => {
   return (
     <Container maxWidth='lg' className={classes.root}>
       <Typography component='div' className={classes.main}>
-        {JSON.stringify(page)}
-        {JSON.stringify(queryPage)}
-        {JSON.stringify(keyword)}
         <header>
           <Welcome width={width} />
           <HomeFilters
