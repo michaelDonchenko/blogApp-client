@@ -16,6 +16,7 @@ import UpdatePost from './pages/user/UpdatePost'
 import SinglePost from './pages/post/SinglePost'
 import PublicProfile from './pages/public profile/PublicProfile'
 import UserPosts from './pages/user/UserPosts'
+import CannotLogin from './pages/auth/CannotLogin'
 
 const App = () => {
   const classes = useStyles()
@@ -30,6 +31,7 @@ const App = () => {
           <main className={classes.root}>
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/cannot-login' component={CannotLogin} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/post/:id' component={SinglePost} />
             <Route

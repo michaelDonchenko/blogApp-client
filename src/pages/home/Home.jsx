@@ -120,6 +120,7 @@ const Home = () => {
             classes={classes}
             keyword={keyword}
             setKeyword={setKeyword}
+            width={width}
           />
         </header>
 

@@ -17,3 +17,9 @@ export const updateDetails = async (id, token, username, about) =>
 
 export const publicProfile = async (username) =>
   axios.get(`${REACT_APP_SERVER_API}/public-profile/${username}`)
+
+export const getUsername = async (email) =>
+  axios.post(`${REACT_APP_SERVER_API}/forgot-username`, { email })
+
+export const getUsers = async (page, limit) =>
+  axios.get(`${REACT_APP_SERVER_API}/users?page=${page}&limit=${limit}`)

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { pink, deepOrange, deepPurple } from '@material-ui/core/colors'
+import { pink, deepOrange, deepPurple, blue } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,6 +65,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 
+  flexDiv2: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
   image: {
     height: '60px',
     marginRight: '15px',
@@ -83,6 +88,27 @@ const useStyles = makeStyles((theme) => ({
   updateButton: {
     margin: theme.spacing(1, 2),
     color: deepPurple[500],
+  },
+
+  appBar: {
+    position: 'relative',
+    backgroundColor: blue[500],
+  },
+
+  toolBar: {
+    minHeight: '30px',
+  },
+
+  dialogFlex: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  userDiv: {
+    margin: theme.spacing(2, 0),
+    display: 'flex',
+    alignItems: 'center',
+    overflowX: 'auto',
   },
 }))
 

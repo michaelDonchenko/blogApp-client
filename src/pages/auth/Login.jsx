@@ -56,6 +56,8 @@ const Login = ({ history }) => {
             token: loginResponse.data.token,
           },
         })
+
+        history.push('/private-profile')
       }
     } catch (error) {
       setValues({

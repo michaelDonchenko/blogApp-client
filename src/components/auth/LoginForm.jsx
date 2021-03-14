@@ -81,12 +81,8 @@ const LoginForm = ({ values, handleChange, handleSubmit }) => {
 
           <Grid container className={classes.footer}>
             <Grid item xs>
-              <Link
-                className={classes.link}
-                to='/forgot-password'
-                variant='body2'
-              >
-                Forgot password?
+              <Link className={classes.link} to='/cannot-login' variant='body2'>
+                Can't login?
               </Link>
             </Grid>
             <Grid item>

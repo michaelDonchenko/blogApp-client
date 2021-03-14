@@ -17,6 +17,8 @@ import styles from './styles'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import Paginate from '../../components/utils/Paginate'
+import Loader from '../../components/utils/Loader'
+import { Alert } from '@material-ui/lab'
 
 const UserPosts = () => {
   const classes = styles()
@@ -62,6 +64,16 @@ const UserPosts = () => {
     fetchUserPosts()
   }, [page])
 
+  const displayError = () => {
+    if (error) {
+      return (
+        <Alert style={{ margin: '20px' }} variant='outlined' severity='error'>
+          {error}
+        </Alert>
+      )
+    }
+  }
+
   return (
     <Container maxWidth='lg' className={classes.root}>
       <div className={classes.main}>
@@ -69,47 +81,61 @@ const UserPosts = () => {
           {user && `${user.username}'s Posts`}
         </Typography>
 
-        <TableContainer component={Paper} style={{ padding: '10px 0' }}>
-          <Table className={classes.table} aria-label='simple table'>
-            <TableHead>
-              <TableRow>
-                <TableCell align='left'>Created At</TableCell>
-                <TableCell align='left'>Title</TableCell>
-                <TableCell align='left'>Views</TableCell>
-                <TableCell align='left'>Likes</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {posts &&
-                posts.map((post) => (
-                  <TableRow key={post._id}>
-                    <TableCell align='left'>
-                      {moment(post.createdAt).format('MM Do YYYY')}
-                    </TableCell>
+        {displayError()}
 
-                    <TableCell align='left'>
-                      <Tooltip title={post.title}>
-                        <Link className={classes.link} to={`/post/${post._id}`}>
-                          {post.title.length >= 20
-                            ? post.title.substring(0, 20) + '...'
-                            : post.title}
-                        </Link>
-                      </Tooltip>
-                    </TableCell>
+        {loading ? (
+          <Loader />
+        ) : (
+          <TableContainer component={Paper} style={{ padding: '10px 0' }}>
+            <Table className={classes.table} aria-label='simple table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell align='left'>Created At</TableCell>
+                  <TableCell align='left'>Title</TableCell>
+                  <TableCell align='left'>Views</TableCell>
+                  <TableCell align='left'>Likes</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {posts && posts.length > 0 ? (
+                  posts.map((post) => (
+                    <TableRow key={post._id}>
+                      <TableCell align='left'>
+                        {moment(post.createdAt).format('MM Do YYYY')}
+                      </TableCell>
 
-                    <TableCell align='left'></TableCell>
+                      <TableCell align='left'>
+                        <Tooltip title={post.title}>
+                          <Link
+                            className={classes.link}
+                            to={`/post/${post._id}`}
+                          >
+                            {post.title.length >= 20
+                              ? post.title.substring(0, 20) + '...'
+                              : post.title}
+                          </Link>
+                        </Tooltip>
+                      </TableCell>
 
-                    <TableCell align='left'></TableCell>
+                      <TableCell align='left'></TableCell>
+
+                      <TableCell align='left'></TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell>No posts found...</TableCell>
                   </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-          <Paginate
-            page={page}
-            pages={pages}
-            handlePageChange={handlePageChange}
-          />
-        </TableContainer>
+                )}
+              </TableBody>
+            </Table>
+            <Paginate
+              page={page}
+              pages={pages}
+              handlePageChange={handlePageChange}
+            />
+          </TableContainer>
+        )}
       </div>
     </Container>
   )
