@@ -162,6 +162,7 @@ const SinglePost = ({ match, history }) => {
               createdAt={post.createdAt}
               classes={classes}
               width={width}
+              post={post}
             />
 
             <hr className={classes.hr}></hr>

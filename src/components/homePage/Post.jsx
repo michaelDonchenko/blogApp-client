@@ -126,6 +126,10 @@ const Post = ({ post, classes, width, values, setValues }) => {
             <Typography variant='body2' style={{ color: 'GrayText' }}>
               {moment(post.createdAt).format('MMM Do YYYY')}
             </Typography>
+
+            <Typography variant='body2' style={{ color: 'black' }}>
+              Views: {post.views}
+            </Typography>
           </div>
         </Typography>
 

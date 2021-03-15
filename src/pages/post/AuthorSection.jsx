@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const AuthorSection = ({ postedBy, classes, width, createdAt }) => {
+const AuthorSection = ({ postedBy, classes, width, createdAt, post }) => {
   const { images, username, email } = postedBy
 
   return (
@@ -40,6 +40,17 @@ const AuthorSection = ({ postedBy, classes, width, createdAt }) => {
           }}
         >
           {moment(createdAt).format('MMM Do YYYY')}
+        </Typography>
+
+        <Typography
+          variant='subtitle1'
+          style={{
+            overflowX: 'auto',
+            marginLeft: '15px',
+            color: 'black',
+          }}
+        >
+          Views: {post.views}
         </Typography>
       </div>
     </div>
