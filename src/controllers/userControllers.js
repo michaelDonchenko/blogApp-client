@@ -23,3 +23,20 @@ export const getUsername = async (email) =>
 
 export const getUsers = async (page, limit) =>
   axios.get(`${REACT_APP_SERVER_API}/users?page=${page}&limit=${limit}`)
+
+export const forgotPasswordEmail = async (email) =>
+  axios.post(`${REACT_APP_SERVER_API}/forgot-password`, { email })
+
+export const resetPasswordValidation = async (resetPasswordToken) =>
+  axios.get(`${REACT_APP_SERVER_API}/password-reset/${resetPasswordToken}`)
+
+export const resetPasswordAction = async (
+  password,
+  confirmPassword,
+  resetPasswordToken
+) =>
+  axios.post(`${REACT_APP_SERVER_API}/password-reset`, {
+    password,
+    confirmPassword,
+    resetPasswordToken,
+  })

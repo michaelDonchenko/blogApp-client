@@ -8,6 +8,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import ForgotUsername from '../../components/auth/ForgotUsername'
 import { getUsername } from '../../controllers/userControllers'
 import { Alert } from '@material-ui/lab'
+import ForgotPassword from '../../components/auth/ForgotPassword'
 
 const CannotLogin = ({ history }) => {
   const classes = styles()
@@ -21,7 +22,7 @@ const CannotLogin = ({ history }) => {
     loadingUsername: false,
   })
 
-  const { email, usernameError, username, loadingUsername } = values
+  const { email, usernameError, username } = values
 
   if (user && token) {
     history.push('/')
@@ -39,6 +40,15 @@ const CannotLogin = ({ history }) => {
 
   const handleCloseForgotUsername = () => {
     setforgotUsername(false)
+  }
+
+  const [forgotPassword, setForgotPassword] = useState(false)
+  const handleForgotPassword = () => {
+    setForgotPassword(true)
+  }
+
+  const handleCloseForgotPassword = () => {
+    setForgotPassword(false)
   }
 
   useEffect(() => {
@@ -120,6 +130,7 @@ const CannotLogin = ({ history }) => {
           </Button>
 
           <Button
+            onClick={handleForgotPassword}
             startIcon={<LockOpenIcon />}
             className={classes.button}
             variant='outlined'
@@ -152,6 +163,13 @@ const CannotLogin = ({ history }) => {
         fetchUsername={fetchUsername}
         displayUsername={displayUsername}
         displayUsernameError={displayUsernameError}
+      />
+
+      <ForgotPassword
+        width={width}
+        classes={classes}
+        forgotPassword={forgotPassword}
+        handleCloseForgotPassword={handleCloseForgotPassword}
       />
     </Container>
   )

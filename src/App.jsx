@@ -17,6 +17,7 @@ import SinglePost from './pages/post/SinglePost'
 import PublicProfile from './pages/public profile/PublicProfile'
 import UserPosts from './pages/user/UserPosts'
 import CannotLogin from './pages/auth/CannotLogin'
+import ResetPassword from './pages/auth/ResetPassword'
 
 const App = () => {
   const classes = useStyles()
@@ -33,6 +34,11 @@ const App = () => {
             <Route exact path='/login' component={Login} />
             <Route exact path='/cannot-login' component={CannotLogin} />
             <Route exact path='/register' component={Register} />
+            <Route
+              exact
+              path='/password-reset/:resetPasswordToken'
+              component={ResetPassword}
+            />
             <Route exact path='/post/:id' component={SinglePost} />
             <Route
               exact
