@@ -17,7 +17,7 @@ const UpdatePost = ({ match }) => {
     success: false,
   })
 
-  const { title, body, error, loading, success } = values
+  const { title, body, error, loading, success, active } = values
   const { state } = useContext(AuthContext)
   const { token } = state
   const id = match.params.id
@@ -119,9 +119,7 @@ const UpdatePost = ({ match }) => {
     }
   }
 
-  useEffect(() => {
-    setTimeout(() => fetchPost(), 2000)
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <Container maxWidth='lg' className={classes.root}>
@@ -160,6 +158,7 @@ const UpdatePost = ({ match }) => {
              bullist numlist outdent indent | removeformat | help',
                 }}
                 onEditorChange={handleEditorChange}
+                onInit={fetchPost}
               />
             </div>
             {loading ? (
