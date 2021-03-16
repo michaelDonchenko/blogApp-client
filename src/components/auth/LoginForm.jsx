@@ -36,7 +36,7 @@ const LoginForm = ({ values, handleChange, handleSubmit }) => {
   }
 
   return (
-    <Typography component='Typography' className={classes.main}>
+    <Typography component='div' className={classes.main}>
       <div className={classes.paper}>
         <Typography component='h1' variant='h5'>
           Login
