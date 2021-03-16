@@ -47,7 +47,6 @@ const RegisterForm = ({ values, handleChange, handleSubmit }) => {
 
   return (
     <Typography component='div' className={classes.main}>
-      <CssBaseline />
       <div className={classes.paper}>
         <Typography component='h1' variant='h5'>
           Register
