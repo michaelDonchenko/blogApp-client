@@ -157,20 +157,21 @@ const SinglePost = ({ match, history }) => {
 
             <hr className={classes.hr}></hr>
 
-            <AuthorSection
-              postedBy={postedBy}
-              createdAt={post.createdAt}
-              classes={classes}
-              width={width}
-              post={post}
-            />
-
-            <hr className={classes.hr}></hr>
+            <div style={{ marginBottom: '15px' }}>
+              <AuthorSection
+                postedBy={postedBy}
+                createdAt={post.createdAt}
+                classes={classes}
+                width={width}
+                post={post}
+              />
+            </div>
 
             <ActionButtons
               classes={classes}
               user={user}
               post={post}
+              token={token}
               postId={postId}
               handleClickOpen={handleClickOpen}
             />

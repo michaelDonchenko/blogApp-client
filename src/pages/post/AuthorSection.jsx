@@ -24,33 +24,35 @@ const AuthorSection = ({ postedBy, classes, width, createdAt, post }) => {
         >
           <Typography
             variant={width > 600 ? 'h5' : 'subtitle1'}
-            style={{ overflowX: 'auto', fontWeight: '600', marginLeft: '15px' }}
+            style={{ overflowX: 'auto', fontWeight: '600', marginLeft: '20px' }}
           >
             {username} /<span style={{ color: 'GrayText' }}>{email}</span>
           </Typography>
         </Link>
 
         <Typography
-          variant='subtitle1'
+          variant='h6'
           style={{
-            overflowX: 'auto',
             fontWeight: '600',
-            marginLeft: '15px',
-            color: 'GrayText',
+            overflowX: 'auto',
+            margin: '10px 0 0 20px',
+            color: 'black',
           }}
         >
-          {moment(createdAt).format('MMM Do YYYY')}
+          <span style={{ color: 'GrayText', marginRight: '5px' }}>Views:</span>
+          {post.views}
         </Typography>
 
         <Typography
           variant='subtitle1'
           style={{
             overflowX: 'auto',
-            marginLeft: '15px',
-            color: 'black',
+            fontWeight: '600',
+            margin: '10px 0 0 20px',
+            color: 'GrayText',
           }}
         >
-          Views: {post.views}
+          {moment(createdAt).format('MMM Do YYYY')}
         </Typography>
       </div>
     </div>

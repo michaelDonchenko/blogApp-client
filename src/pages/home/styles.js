@@ -71,8 +71,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   image: {
-    height: '60px',
-    marginRight: '15px',
+    height: '80px',
+    margin: ' 0 15px',
   },
 
   button: {

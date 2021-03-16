@@ -37,3 +37,26 @@ export const getUserPosts = async (userId, page, limit) =>
 
 export const searchQuery = async (keyword, page) =>
   axios.post(`${REACT_APP_SERVER_API}/searchQuery?page=${page}`, { keyword })
+
+export const likePost = async (postId, token) =>
+  axios.put(
+    `${REACT_APP_SERVER_API}/like/${postId}`,
+    {},
+
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  )
+
+export const unlikePost = async (postId, token) =>
+  axios.put(
+    `${REACT_APP_SERVER_API}/unlike/${postId}`,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  )
