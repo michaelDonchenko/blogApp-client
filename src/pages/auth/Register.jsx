@@ -70,11 +70,13 @@ const Register = ({ history }) => {
   return (
     <>
       <Container maxWidth='xs' className={classes.root}>
-        <RegisterForm
-          values={values}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
+        <div style={{ marginTop: '15px' }}>
+          <RegisterForm
+            values={values}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </div>
       </Container>
     </>
   )

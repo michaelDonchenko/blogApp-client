@@ -35,8 +35,6 @@ const useStyles = makeStyles({
   },
 
   toolBar: {
-    minHeight: '30px',
-    height: '35px',
     width: '100%',
     maxWidth: '1280px',
   },

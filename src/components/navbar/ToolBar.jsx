@@ -15,7 +15,7 @@ const ToolBar = ({
 }) => {
   const classes = useStyles()
   return (
-    <Toolbar className={classes.toolBar}>
+    <Toolbar className={classes.toolBar} variant='dense'>
       <NavLink
         exact={true}
         activeStyle={{

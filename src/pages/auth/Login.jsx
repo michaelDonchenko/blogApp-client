@@ -71,11 +71,13 @@ const Login = ({ history }) => {
 
   return (
     <Container maxWidth='xs' className={classes.root}>
-      <LoginForm
-        values={values}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
+      <div style={{ marginTop: '15px' }}>
+        <LoginForm
+          values={values}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      </div>
     </Container>
   )
 }
