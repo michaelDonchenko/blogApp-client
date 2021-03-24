@@ -11,6 +11,13 @@ export const getUnconfirmed = async (page, token) =>
     },
   })
 
+export const getDenied = async (page, token) =>
+  await axios.get(`${REACT_APP_SERVER_API}/denied-posts?page=${page}`, {
+    headers: {
+      Authorization: token,
+    },
+  })
+
 export const getConfirmed = async (page) =>
   await axios.get(`${REACT_APP_SERVER_API}/confirmed-posts?page=${page}`)
 
@@ -43,6 +50,11 @@ export const getPost = async (id) =>
 export const getUserPosts = async (userId, page, limit) =>
   await axios.get(
     `${REACT_APP_SERVER_API}/user-posts/${userId}?page=${page}&limit=${limit}`
+  )
+
+export const getAllUserPosts = async (userId, page, limit) =>
+  await axios.get(
+    `${REACT_APP_SERVER_API}/all-user-posts/${userId}?page=${page}&limit=${limit}`
   )
 
 export const searchQuery = async (keyword, page) =>

@@ -7,7 +7,7 @@ import Loader from '../../components/utils/Loader'
 import LeftGrid from './LeftGrid'
 import RightGrid from './RightGrid'
 
-const PublicProfile = ({ match }) => {
+const PublicProfile = ({ match, history }) => {
   const classes = styles()
   const username = match.params.username
 
@@ -56,6 +56,10 @@ const PublicProfile = ({ match }) => {
   useEffect(() => {
     getProfile()
   }, [])
+
+  if (profile.banned) {
+    history.push('/banned-user')
+  }
 
   return (
     <Container maxWidth='lg' className={classes.root}>

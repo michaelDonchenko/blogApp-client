@@ -66,9 +66,9 @@ const PostStatusChange = ({ post }) => {
       <FormControl className={classes.select}>
         <InputLabel id='status'>Select post status</InputLabel>
         <Select labelId='status' value={select} onChange={handleSelect}>
-          <MenuItem value={'not confirmed'}>Not confirmed</MenuItem>
-          <MenuItem value={'confirmed'}>Confirmed</MenuItem>
-          <MenuItem value={'denied'}>Denied</MenuItem>
+          <MenuItem value={'Not confirmed'}>Not confirmed</MenuItem>
+          <MenuItem value={'Confirmed'}>Confirmed</MenuItem>
+          <MenuItem value={'Denied'}>Denied</MenuItem>
         </Select>
       </FormControl>
 

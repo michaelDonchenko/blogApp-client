@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Container, Typography } from '@material-ui/core'
 import useStyles from './styles'
-import { getUnconfirmed } from '../../../controllers/postControllers'
+import { getDenied } from '../../../controllers/postControllers'
 import PostsContainer from './PostsContainer'
 import Paginate from '../../../components/utils/Paginate'
 import { AuthContext } from '../../../context/authContext'
 
-const Pending = () => {
+const Denied = () => {
   const classes = useStyles()
   const { state } = useContext(AuthContext)
   const { token } = state
@@ -31,7 +31,7 @@ const Pending = () => {
   const getAllPosts = async () => {
     setValues({ ...values, loading: true })
     try {
-      const getPostsResponse = await getUnconfirmed(page, token)
+      const getPostsResponse = await getDenied(page, token)
 
       if (getPostsResponse.data.success === true) {
         setValues({
@@ -70,7 +70,7 @@ const Pending = () => {
     <Container maxWidth='lg' className={classes.root}>
       <Typography component='div' className={classes.main}>
         <Typography variant='h4' align='center' className={classes.header}>
-          Pending blogs
+          Denied blogs
         </Typography>
         <main>
           <PostsContainer
@@ -96,4 +96,4 @@ const Pending = () => {
   )
 }
 
-export default Pending
+export default Denied

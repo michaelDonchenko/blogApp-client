@@ -21,6 +21,9 @@ import ResetPassword from './pages/auth/ResetPassword'
 import AuthorizationError from './pages/admin/AuthorizationError'
 import AdminRoute from './components/routes/AdminRoute'
 import Pending from './pages/admin/pending-posts/Pending'
+import Denied from './pages/admin/pending-posts/Denied'
+import BanUsers from './pages/admin/ban-users/BanUsers'
+import Banned from './pages/admin/Banned'
 
 const App = () => {
   const classes = useStyles()
@@ -70,6 +73,8 @@ const App = () => {
 
             {/* Admin routes */}
             <AdminRoute exact path={`/pending-posts`} component={Pending} />
+            <AdminRoute exact path={`/denied-posts`} component={Denied} />
+            <AdminRoute exact path={`/ban-users`} component={BanUsers} />
 
             {/* error pages */}
             <Route
@@ -77,6 +82,7 @@ const App = () => {
               path='/Authorization-error'
               component={AuthorizationError}
             />
+            <Route exact path='/banned-user' component={Banned} />
           </main>
         </Switch>
       </ThemeProvider>

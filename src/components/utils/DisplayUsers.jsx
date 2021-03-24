@@ -12,6 +12,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import Paginate from './Paginate'
 import Loader from '../utils/Loader'
 import { Link } from 'react-router-dom'
+import banned from '../../images/banned.jpg'
 
 const DisplayUsers = ({
   width,
@@ -66,7 +67,7 @@ const DisplayUsers = ({
                 <div>
                   <img
                     className={classes.image}
-                    src={user.images[0].url}
+                    src={user.banned ? banned : user.images[0].url}
                     alt='Could not display image'
                   />
                 </div>

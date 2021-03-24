@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import LockIcon from '@material-ui/icons/Lock'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
 import ChatIcon from '@material-ui/icons/Chat'
+import BlockIcon from '@material-ui/icons/Block'
 
 export default function UserMenu({
   classes,
@@ -59,6 +60,13 @@ export default function UserMenu({
               <MenuItem className={classes.item} onClick={handleClose}>
                 <LockIcon className={classes.icon} />
                 Pending posts
+              </MenuItem>
+            </Link>
+
+            <Link className={classes.link} to={`/denied-posts`}>
+              <MenuItem className={classes.item} onClick={handleClose}>
+                <BlockIcon className={classes.icon} />
+                Denied posts
               </MenuItem>
             </Link>
 

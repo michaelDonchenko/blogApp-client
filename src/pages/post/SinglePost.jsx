@@ -144,7 +144,7 @@ const SinglePost = ({ match, history }) => {
       ) : (
         <>
           <Typography component='div' className={classes.main}>
-            {post.status === 'denied' ? (
+            {post.status === 'Denied' ? (
               <Typography
                 align='center'
                 style={{ marginTop: '20px' }}

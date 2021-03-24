@@ -40,3 +40,12 @@ export const resetPasswordAction = async (
     confirmPassword,
     resetPasswordToken,
   })
+
+export const banUser = async (token, userId, banned) =>
+  axios.put(
+    `${REACT_APP_SERVER_API}/ban/${userId}`,
+    { banned },
+    {
+      headers: { Authorization: token },
+    }
+  )

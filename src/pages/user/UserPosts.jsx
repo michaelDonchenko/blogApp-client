@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/authContext'
-import { getUserPosts } from '../../controllers/postControllers'
+import { getAllUserPosts } from '../../controllers/postControllers'
 import styles from './styles'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
@@ -39,7 +39,7 @@ const UserPosts = () => {
   const fetchUserPosts = async () => {
     setValues({ ...values, loading: true })
     try {
-      const { data } = await getUserPosts(user._id, page, limit)
+      const { data } = await getAllUserPosts(user._id, page, limit)
       setValues({
         ...values,
         posts: data.posts,
@@ -105,20 +105,28 @@ const UserPosts = () => {
 
                       <TableCell align='left'>
                         <Tooltip title={post.title}>
-                          <Link
-                            className={classes.link}
-                            to={`/post/${post._id}`}
-                          >
-                            {post.title.length >= 20
-                              ? post.title.substring(0, 20) + '...'
-                              : post.title}
-                          </Link>
+                          {post.status === 'Confirmed' ? (
+                            <Link
+                              className={classes.link}
+                              to={`/post/${post._id}`}
+                            >
+                              {post.title.length >= 20
+                                ? post.title.substring(0, 20) + '...'
+                                : post.title}
+                            </Link>
+                          ) : (
+                            <span style={{ color: 'gray' }}>
+                              {post.title.length >= 20
+                                ? post.title.substring(0, 20) + '...'
+                                : post.title}
+                            </span>
+                          )}
                         </Tooltip>
                       </TableCell>
 
                       <TableCell align='left'>
-                        {post.status === 'not confirmed'
-                          ? 'Pending confirmation'
+                        {post.status === 'Not confirmed'
+                          ? 'Pending'
                           : post.status}
                       </TableCell>
                     </TableRow>
