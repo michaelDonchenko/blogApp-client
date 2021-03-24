@@ -100,7 +100,8 @@ const ActionButtons = ({ user, classes, post, handleClickOpen, token }) => {
           comment
         </Button>
 
-        {user && user._id === post.postedBy._id ? (
+        {(user && user._id === post.postedBy._id) ||
+        (user && user.role === 'admin') ? (
           <>
             <Link
               className={classes.buttonLink}

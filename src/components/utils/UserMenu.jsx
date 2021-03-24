@@ -5,6 +5,8 @@ import PersonIcon from '@material-ui/icons/Person'
 import PostAddIcon from '@material-ui/icons/PostAdd'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Link } from 'react-router-dom'
+import LockIcon from '@material-ui/icons/Lock'
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
 import ChatIcon from '@material-ui/icons/Chat'
 
 export default function UserMenu({
@@ -50,6 +52,24 @@ export default function UserMenu({
             <ChatIcon className={classes.icon} /> My Posts
           </MenuItem>
         </Link>
+
+        {user.role === 'admin' ? (
+          <>
+            <Link className={classes.link} to={`/pending-posts`}>
+              <MenuItem className={classes.item} onClick={handleClose}>
+                <LockIcon className={classes.icon} />
+                Pending posts
+              </MenuItem>
+            </Link>
+
+            <Link className={classes.link} to={`/ban-users`}>
+              <MenuItem className={classes.item} onClick={handleClose}>
+                <SupervisorAccountIcon className={classes.icon} />
+                Ban users
+              </MenuItem>
+            </Link>
+          </>
+        ) : null}
 
         <MenuItem className={classes.item} onClick={handleLogout}>
           <ExitToAppIcon className={classes.icon} /> Log-out

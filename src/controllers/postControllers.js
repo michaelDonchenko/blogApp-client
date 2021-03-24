@@ -4,6 +4,16 @@ const { REACT_APP_SERVER_API } = process.env
 export const getPosts = async (page) =>
   await axios.get(`${REACT_APP_SERVER_API}/posts?page=${page}`)
 
+export const getUnconfirmed = async (page, token) =>
+  await axios.get(`${REACT_APP_SERVER_API}/unconfirmed-posts?page=${page}`, {
+    headers: {
+      Authorization: token,
+    },
+  })
+
+export const getConfirmed = async (page) =>
+  await axios.get(`${REACT_APP_SERVER_API}/confirmed-posts?page=${page}`)
+
 export const newPost = async (token, title, body) =>
   axios.post(
     `${REACT_APP_SERVER_API}/post`,
@@ -58,5 +68,14 @@ export const unlikePost = async (postId, token) =>
       headers: {
         Authorization: token,
       },
+    }
+  )
+
+export const changeStatus = async (token, postId, status) =>
+  axios.put(
+    `${REACT_APP_SERVER_API}/changeStatus/${postId}`,
+    { status },
+    {
+      headers: { Authorization: token },
     }
   )

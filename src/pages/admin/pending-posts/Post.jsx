@@ -1,82 +1,12 @@
 import { Typography } from '@material-ui/core'
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import parse from 'html-react-parser'
 import { pink } from '@material-ui/core/colors'
-import { AuthContext } from '../../context/authContext'
-import DeleteDialog from '../utils/DeleteDialog'
-import { deletePost } from '../../controllers/postControllers'
-import { Alert } from '@material-ui/lab'
-import { getPosts } from '../../controllers/postControllers'
-import ActionButtons from '../utils/ActionButtons'
-import PostStatusChange from '../../pages/admin/pending-posts/PostStatusChange'
+import PostStatusChange from './PostStatusChange'
 
-const Post = ({ post, classes, width, values, setValues }) => {
-  const { state } = useContext(AuthContext)
-  const { user, token } = state
-  const { deleteError } = values
-
-  const [postId, setPostId] = useState(false)
-
-  const handleClickOpen = () => {
-    setPostId(post._id)
-  }
-
-  const handleClose = () => {
-    setPostId(false)
-    setValues({ ...values, deleteError: false })
-  }
-
-  const handleDelete = async () => {
-    setValues({ ...values, deleteLoading: true })
-    try {
-      const res = await deletePost(token, post._id)
-
-      if (res.data.success) {
-        const { data } = await getPosts()
-        setValues({
-          ...values,
-          deleteError: false,
-          posts: data.posts,
-          deleteLoading: false,
-          pages: data.pages,
-          setPostId: false,
-        })
-      }
-    } catch (error) {
-      if (error.response.status === 401) {
-        return setValues({
-          ...values,
-          deleteSuccess: false,
-          deleteError: 'You are Unauthorized',
-          deleteLoading: false,
-        })
-      }
-
-      setValues({
-        ...values,
-        deleteSuccess: false,
-        deleteError: error.response.data.message,
-        deleteLoading: false,
-      })
-    }
-  }
-
-  const displayError = () => {
-    if (deleteError) {
-      return (
-        <Alert
-          style={{ margin: '15px', width: '100%' }}
-          variant='outlined'
-          severity='error'
-        >
-          {deleteError}
-        </Alert>
-      )
-    }
-  }
-
+const Post = ({ post, classes, width }) => {
   return (
     <>
       <Typography component='div' className={classes.post}>
@@ -150,25 +80,8 @@ const Post = ({ post, classes, width, values, setValues }) => {
           </div>
         </Typography>
 
-        <ActionButtons
-          classes={classes}
-          user={user}
-          token={token}
-          post={post}
-          handleClickOpen={handleClickOpen}
-        />
-
-        {user && user.role === 'admin' && <PostStatusChange post={post} />}
+        <PostStatusChange post={post} />
       </Typography>
-
-      <DeleteDialog
-        displayError={displayError}
-        postId={postId}
-        handleClose={handleClose}
-        post={post}
-        handleDelete={handleDelete}
-        values={values}
-      />
     </>
   )
 }

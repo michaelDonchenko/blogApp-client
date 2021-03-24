@@ -1,8 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Typography } from '@material-ui/core'
 import useStyles from './styles'
 import HomeFilters from '../../components/homePage/HomeFilters'
-import { getPosts, searchQuery } from '../../controllers/postControllers'
+import {
+  getPosts,
+  searchQuery,
+  getConfirmed,
+} from '../../controllers/postControllers'
 import PostsContainer from '../../components/homePage/PostsContainer'
 import Paginate from '../../components/utils/Paginate'
 import Welcome from '../../components/homePage/Welcome'
@@ -34,7 +38,7 @@ const Home = () => {
   const getAllPosts = async () => {
     setValues({ ...values, loading: true })
     try {
-      const getPostsResponse = await getPosts(page)
+      const getPostsResponse = await getConfirmed(page)
 
       if (getPostsResponse.data.success === true) {
         setValues({

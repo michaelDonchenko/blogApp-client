@@ -144,37 +144,49 @@ const SinglePost = ({ match, history }) => {
       ) : (
         <>
           <Typography component='div' className={classes.main}>
-            <Typography
-              className={classes.header}
-              variant={width < 600 ? 'h6' : 'h4'}
-            >
-              {title && title}
-            </Typography>
+            {post.status === 'denied' ? (
+              <Typography
+                align='center'
+                style={{ marginTop: '20px' }}
+                variant={width < 600 ? 'h6' : 'h4'}
+              >
+                This post was denied by the admin
+              </Typography>
+            ) : (
+              <>
+                <Typography
+                  className={classes.header}
+                  variant={width < 600 ? 'h6' : 'h4'}
+                >
+                  {title && title}
+                </Typography>
 
-            <div className={classes.body}>
-              <Typography variant='body1'>{body && parse(body)}</Typography>
-            </div>
+                <div className={classes.body}>
+                  <Typography variant='body1'>{body && parse(body)}</Typography>
+                </div>
 
-            <hr className={classes.hr}></hr>
+                <hr className={classes.hr}></hr>
 
-            <div style={{ marginBottom: '15px' }}>
-              <AuthorSection
-                postedBy={postedBy}
-                createdAt={post.createdAt}
-                classes={classes}
-                width={width}
-                post={post}
-              />
-            </div>
+                <div style={{ marginBottom: '15px' }}>
+                  <AuthorSection
+                    postedBy={postedBy}
+                    createdAt={post.createdAt}
+                    classes={classes}
+                    width={width}
+                    post={post}
+                  />
+                </div>
 
-            <ActionButtons
-              classes={classes}
-              user={user}
-              post={post}
-              token={token}
-              postId={postId}
-              handleClickOpen={handleClickOpen}
-            />
+                <ActionButtons
+                  classes={classes}
+                  user={user}
+                  post={post}
+                  token={token}
+                  postId={postId}
+                  handleClickOpen={handleClickOpen}
+                />
+              </>
+            )}
           </Typography>
 
           <DeleteSinglePost

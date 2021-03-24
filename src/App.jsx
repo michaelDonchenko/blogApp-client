@@ -18,6 +18,9 @@ import PublicProfile from './pages/public profile/PublicProfile'
 import UserPosts from './pages/user/UserPosts'
 import CannotLogin from './pages/auth/CannotLogin'
 import ResetPassword from './pages/auth/ResetPassword'
+import AuthorizationError from './pages/admin/AuthorizationError'
+import AdminRoute from './components/routes/AdminRoute'
+import Pending from './pages/admin/pending-posts/Pending'
 
 const App = () => {
   const classes = useStyles()
@@ -30,6 +33,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <main className={classes.root}>
+            {/* public routes */}
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/cannot-login' component={CannotLogin} />
@@ -46,6 +50,7 @@ const App = () => {
               component={PublicProfile}
             />
 
+            {/* private routes */}
             <PrivateRoute
               exact
               path={`/private-profile`}
@@ -61,6 +66,16 @@ const App = () => {
               exact
               path={`/my-posts/:username`}
               component={UserPosts}
+            />
+
+            {/* Admin routes */}
+            <AdminRoute exact path={`/pending-posts`} component={Pending} />
+
+            {/* error pages */}
+            <Route
+              exact
+              path='/Authorization-error'
+              component={AuthorizationError}
             />
           </main>
         </Switch>

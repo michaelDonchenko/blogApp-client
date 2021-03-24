@@ -92,8 +92,7 @@ const UserPosts = () => {
                 <TableRow>
                   <TableCell align='left'>Created At</TableCell>
                   <TableCell align='left'>Title</TableCell>
-                  <TableCell align='left'>Views</TableCell>
-                  <TableCell align='left'>Likes</TableCell>
+                  <TableCell align='left'>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -117,9 +116,11 @@ const UserPosts = () => {
                         </Tooltip>
                       </TableCell>
 
-                      <TableCell align='left'></TableCell>
-
-                      <TableCell align='left'></TableCell>
+                      <TableCell align='left'>
+                        {post.status === 'not confirmed'
+                          ? 'Pending confirmation'
+                          : post.status}
+                      </TableCell>
                     </TableRow>
                   ))
                 ) : (
